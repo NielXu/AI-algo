@@ -103,10 +103,6 @@ def evaluate_line(b, r1, c1, r2, c2, r3, c3):
     return score
 
 
-def win_way(b, p):
-    "Calaulate the number of ways that "
-
-
 if __name__ == "__main__":
     b = [
         ["O", "O", "X"],
