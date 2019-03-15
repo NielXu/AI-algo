@@ -3,6 +3,10 @@ Classic tic tac toe game, does not handle any kinds
 of errors.
 """
 from copy import deepcopy
+import minimax
+
+
+ENABLE_AI = True
 
 
 def init_board():
@@ -59,6 +63,13 @@ def show(board):
         print(row)
         if i != 2:
             print("----------")
+    print("**************************")
+    print()
+
+
+def undo(board, x, y):
+    "Undo move at (x,y)"
+    board[x][y] = '-' 
 
 
 def game():
@@ -71,7 +82,10 @@ def game():
             make_move(b, int(x), int(y), p)
             p = False
         else:
-            x,y = input("Eneter your move(Computer)").split(",")
+            if ENABLE_AI:
+                x,y = minimax.gen(b)
+            else:
+                x,y = input("Eneter your move(Computer)").split(",")
             make_move(b, int(x), int(y), p)
             p = True
         result = check(b)
@@ -94,6 +108,7 @@ def start():
         again = input("Do you wanna try again?(y/n)")
         if again == 'n':
             break
+        print()
 
-
-start()
+if __name__ == "__main__":
+    start()
